@@ -3,7 +3,7 @@ import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r118/thr
 
 function init() {
     const canvas = document.getElementById('three-scene');
-    const renderer = new THREE.WebGLRenderer({canvas, antialis: true})
+    const renderer = new THREE.WebGLRenderer({canvas})
 
 
     // Camera
