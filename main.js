@@ -12,8 +12,7 @@ function init() {
     const near = 0.1;
     const far = 15;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.z = 5;
-    camera.position.y += 0
+    camera.position.z = 6;
     
     camera.lookAt(0,0,0)
 
@@ -47,12 +46,11 @@ function init() {
     asteroidCenter.position.set(0,0,0)
 
 
-    // Asteroids
 
     // Sun 
     const sphereRadius= .5;
-    const sphereHeight = 155;
-    const sphereDepth = 155;
+    const sphereHeight = 30;
+    const sphereDepth = 30;
     let geometry = new THREE.SphereGeometry(sphereRadius, sphereHeight, sphereDepth);
     let material = new THREE.MeshPhongMaterial({emissive: 0xffffff});
     const sun = new THREE.Mesh(geometry, material);
@@ -66,7 +64,7 @@ function init() {
     const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
     const earthMesh = new THREE.Mesh(geometry, earthMaterial);
     earthMesh.position.x = 2;
-    earthMesh.scale.set(.1,.1,.1)
+    earthMesh.scale.set(.15,.15,.15)
     earthMesh.receiveShadow = true;
     sun.add(earthMesh);
     objects.push(earthMesh);
@@ -75,7 +73,7 @@ function init() {
     const moonMaterial = new THREE.MeshPhongMaterial({color: 0xffffff, emissive: 0xffffff});
     const moonMesh = new THREE.Mesh(geometry, moonMaterial);
     moonMesh.position.x = 1.3;
-    moonMesh.scale.set(.12,.12,.12)
+    moonMesh.scale.set(.18,.18,.18)
     moonMesh.castShadow = true;
     earthMesh.add(moonMesh)
     objects.push(moonMesh);
@@ -155,18 +153,11 @@ function init() {
     
 
     // Light
-    const light = new THREE.PointLight(0xffffaa, 50, 66 )
+    const light = new THREE.PointLight(0xffffaa, 30, 66 )
     light.position.z = .1
-    light.castShadow = true;    
     
     sun.add(light)  
 
-    scene.add(stars)
-    scene.add(mercuryCenter)
-    scene.add(venusCenter)
-    scene.add(marsCenter)
-    scene.add(jupiterCenter)
-    scene.add(saturnCenter)
 
 
     scene.add(asteroidCenter)
@@ -177,9 +168,9 @@ function init() {
     light.shadow.camera.near = .5;       // default
     light.shadow.camera.far = 500      // default 
 
-    for (let i = 0; i < 5000; i++) {
-        let geometry = new THREE.SphereGeometry(.004, 5, 5)
-        let material = new THREE.MeshPhongMaterial({color: 0xffeeee})
+    for (let i = 0; i < 1000; i++) {
+        let geometry = new THREE.SphereGeometry(.003, 5, 5)
+        let material = new THREE.MeshPhongMaterial({color: 0xffffff, emissive: 0xffffff})
         let star = new THREE.Mesh(geometry, material)
         star.position.set(getRandom(-8, 8), getRandom(-8, 8), 0)
         stars.add(star)
@@ -187,6 +178,14 @@ function init() {
 
     scene.add(sun);
     scene.add(plane);
+    scene.add(stars)
+    
+    scene.add(mercuryCenter)
+    scene.add(venusCenter)
+    scene.add(marsCenter)
+    scene.add(jupiterCenter)
+    scene.add(saturnCenter)
+
 
     renderer.render(scene, camera);
 
