@@ -153,7 +153,7 @@ function init() {
     
 
     // Light
-    const light = new THREE.PointLight('#FFD551', 30, 66 )
+    const light = new THREE.PointLight('#FFE574', 30, 66 )
     light.position.z = .1
     
     sun.add(light)  
@@ -196,9 +196,9 @@ function init() {
         }
         stars.rotation.z = time / 16
         // Sun Pulsing
-        light.intensity += isUp ? .2 : -.2
-        if (light.intensity > 50) isUp = false
-        if (light.intensity < 25) isUp = true
+        light.intensity += isUp ? .1 : -.1;
+        if (light.intensity > 40) isUp = false
+        if (light.intensity < 20) isUp = true
 
         objects.forEach((obj) => {
             obj.rotation.z = time;
