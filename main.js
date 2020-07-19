@@ -153,7 +153,7 @@ function init() {
     
 
     // Light
-    const light = new THREE.PointLight(0xffffaa, 30, 66 )
+    const light = new THREE.PointLight('#FFD551', 30, 66 )
     light.position.z = .1
     
     sun.add(light)  
@@ -162,14 +162,10 @@ function init() {
 
     scene.add(asteroidCenter)
 
-    //Set up shadow properties for the light
-    light.shadow.mapSize.width = 512;  // default
-    light.shadow.mapSize.height = 512; // default
-    light.shadow.camera.near = .5;       // default
-    light.shadow.camera.far = 500      // default 
+
 
     for (let i = 0; i < 1000; i++) {
-        let geometry = new THREE.SphereGeometry(.003, 5, 5)
+        let geometry = new THREE.SphereGeometry(.004, 5, 5)
         let material = new THREE.MeshPhongMaterial({color: 0xffffff, emissive: 0xffffff})
         let star = new THREE.Mesh(geometry, material)
         star.position.set(getRandom(-8, 8), getRandom(-8, 8), 0)
@@ -188,7 +184,7 @@ function init() {
 
 
     renderer.render(scene, camera);
-
+    let isUp = true;
 
     function render(time) {
         time *= .0015;  // конвертировать время в секунды
@@ -199,7 +195,10 @@ function init() {
             camera.updateProjectionMatrix();
         }
         stars.rotation.z = time / 16
-
+        // Sun Pulsing
+        light.intensity += isUp ? .2 : -.2
+        if (light.intensity > 50) isUp = false
+        if (light.intensity < 25) isUp = true
 
         objects.forEach((obj) => {
             obj.rotation.z = time;
