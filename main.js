@@ -164,11 +164,11 @@ function init() {
 
 
 
-    for (let i = 0; i < 1000; i++) {
-        let geometry = new THREE.SphereGeometry(.004, 5, 5)
+    for (let i = 0; i < 2000; i++) {
+        let geometry = new THREE.SphereGeometry(.003, 5, 5)
         let material = new THREE.MeshPhongMaterial({color: 0xffffff, emissive: 0xffffff})
         let star = new THREE.Mesh(geometry, material)
-        star.position.set(getRandom(-8, 8), getRandom(-8, 8), 0)
+        star.position.set(getRandom(-9, 9), getRandom(-8, 8), 0)
         stars.add(star)
     }    
 
